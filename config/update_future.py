@@ -8,7 +8,7 @@ from QUANTAXIS.QASU.main import (QA_SU_save_etf_day, QA_SU_save_etf_min,
                                  QA_SU_save_stock_xdxr,QA_SU_save_future_day,QA_SU_save_future_day_all,
                                  QA_SU_save_future_min,QA_SU_save_future_min_all)
 
-
+#期货
 QA_SU_save_future_min_all('tdx')
 QA_SU_save_future_day_all('tdx')
 

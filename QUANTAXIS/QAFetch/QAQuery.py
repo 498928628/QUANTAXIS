@@ -164,6 +164,13 @@ def QA_fetch_index_list(collections=DATABASE.index_list):
     '获取指数列表'
     return pd.DataFrame([item for item in collections.find()]).drop('_id', axis=1, inplace=False).set_index('code', drop=False)
 
+#临时使用用以弥补QADate_trade的不足
+def QA_fetch_tradeless_list(collections=DATABASE.trade_date_pro):
+    #'获取非交易时间列表'
+    all = pd.DataFrame([item for item in collections.find()]).drop('_id', axis=1, inplace=False)
+    tradeless = list(all[all['is_open'].isin([0])]['cal_date'])
+    return tradeless
+
 
 def QA_fetch_stock_terminated(collections=DATABASE.stock_terminated):
     '获取股票基本信息 , 已经退市的股票列表'
@@ -883,4 +890,5 @@ def QA_fetch_stock_divyield(code, start, end=None, format='pd', collections=DATA
 
 
 if __name__ == '__main__':
-    print(QA_fetch_lhb('2006-07-03'))
+    # print(QA_fetch_lhb('2006-07-03'))
+    print(QA_fetch_tradeless_list())

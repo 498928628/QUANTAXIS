@@ -35,7 +35,7 @@ from QUANTAXIS.QAUtil import (
 )
 
 
-def set_token(token=None):
+def set_token(token='86175c6d96e732be3ef4c0d25ed6e6ba436cabee3fd2f4ce9b69d6ad'):
     try:
         if token is None:
             # 从~/.quantaxis/setting/config.ini中读取配置
@@ -221,6 +221,25 @@ def QA_fetch_get_trade_date(end, exchange):
         }
         message.append(mes)
     return message
+#添加的pro 交易日历的接口
+def QA_fetch_get_trade_date_pro(end, exchange):
+    data = get_pro().trade_cal()
+    # da = data[data.isOpen > 0]
+    data_json = QA_util_to_json_from_pandas(data)
+    # message = []
+    # for i in range(0, len(data_json) - 1, 1):
+    #     date = data_json[i]['calendarDate']
+    #     num = i + 1
+    #     exchangeName = 'SSE'
+    #     data_stamp = QA_util_date_stamp(date)
+    #     mes = {
+    #         'date': date,
+    #         'num': num,
+    #         'exchangeName': exchangeName,
+    #         'date_stamp': data_stamp
+    #     }
+    #     message.append(mes)
+    return data_json
 
 
 def QA_fetch_get_lhb(date):
@@ -236,5 +255,10 @@ def QA_fetch_get_stock_money():
 # print(get_stock_day("000001",'2001-01-01','2010-01-01'))
 # print(get_stock_tick("000001.SZ","2017-02-21"))
 if __name__ == '__main__':
-    df = QA_fetch_get_stock_list()
-    print(df)
+    # df = QA_fetch_get_stock_list()
+    # df2 = QA_fetch_stock_basic()
+    # print(df2)
+
+    # df = QA_fetch_get_trade_date_pro('','')
+    # print(df)
+    pass

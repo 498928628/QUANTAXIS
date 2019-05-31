@@ -35,8 +35,7 @@ from QUANTAXIS.QAFetch.QATushare import (
     QA_fetch_get_stock_info,
     QA_fetch_get_stock_list,
     QA_fetch_get_trade_date,
-    QA_fetch_get_lhb,
-    QA_fetch_get_trade_date_pro
+    QA_fetch_get_lhb
 )
 from QUANTAXIS.QAUtil import (
     QA_util_date_stamp,
@@ -189,11 +188,6 @@ def QA_SU_save_trade_date_all(client=DATABASE):
     coll = client.trade_date
     coll.insert_many(data)
 
-#添加生成所有交易日历pro
-def QA_SU_save_trade_date_all_pro(client=DATABASE):
-    data = QA_fetch_get_trade_date_pro('', '')
-    coll = client.trade_date_pro
-    coll.insert_many(data)
 
 def QA_SU_save_stock_info(client=DATABASE):
     data = QA_fetch_get_stock_info('all')
@@ -425,7 +419,4 @@ if __name__ == '__main__':
     client = MongoClient('localhost', 27017)
     db = client['quantaxis']
     # QA_SU_save_stock_day(client=db)
-    # QA_SU_save_trade_date_all(client=DATABASE)
-
-    #添加交易日
-    QA_SU_save_trade_date_all_pro(client=DATABASE)
+    QA_SU_save_trade_date_all(client=DATABASE)

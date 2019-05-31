@@ -45,7 +45,8 @@ from QUANTAXIS.QAFetch.QAQuery import (QA_fetch_index_day,
                                        QA_fetch_index_list,
                                        QA_fetch_future_list,
                                        QA_fetch_stock_financial_calendar,
-                                       QA_fetch_stock_divyield
+                                       QA_fetch_stock_divyield,
+QA_fetch_tradeless_list
                                        )
 from QUANTAXIS.QAUtil.QADate import month_data
 from QUANTAXIS.QAUtil import (DATABASE, QA_Setting, QA_util_date_stamp,
@@ -611,6 +612,18 @@ def QA_fetch_stock_divyield_adv(code, start="all", end=None, format='pd', collec
             data=month_data, index=pd.to_datetime(month_data), name='date')
         timerange = series.loc[start:end].tolist()
         return QA_DataStruct_Financial(QA_fetch_stock_divyield(code, start, end))
+
+def QA_fetch_tradeless_day_adv(collections=DATABASE.index_list):
+    '''
+    '获取股票列表'
+    :param collections: mongodb 数据库
+    :return: DataFrame
+    '''
+    tradeliess_list_items = QA_fetch_tradeless_list(collections)
+    if len(index_list_items) == 0:
+        print("QA Error QA_fetch_index_list_adv call item for item in collections.find() return 0 item, maybe the DATABASE.index_list is empty!")
+        return None
+    return index_list_items
 
 
 if __name__ == '__main__':

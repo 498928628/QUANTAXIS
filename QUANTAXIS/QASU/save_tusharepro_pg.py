@@ -161,10 +161,10 @@ def QA_save_stock_day_pg(start_date='19901219'):
             print(e)
 if __name__ == '__main__':          
 #储存股票列表 包含ts_pro中股票列表所有信息
-QA_save_stock_list_pg() 
+    QA_save_stock_list_pg()
 #储存日线数据  包含ts_pro中"daily" "daily_basic" "adj_factor"所有内容 
 #由于采用日期对比机制进行储存，可以增量储存之前数据
-QA_save_stock_day_pg()  #A_save_stock_day_pg('20180101')储存起始日期
+    QA_save_stock_day_pg()  #A_save_stock_day_pg('20180101')储存起始日期
 
 ##获取股票代码
 #stock_code=QA_fetch_stock_list_pg()['symbol'][:30].tolist()
@@ -175,7 +175,7 @@ QA_save_stock_day_pg()  #A_save_stock_day_pg('20180101')储存起始日期
 ##获取代码所有日线数据
 #stock_data1=QA_fetch_stock_day_pg(stock_code) 
 ##获取固定日期代码所有日线数据 
-#stock_data2=QA_fetch_stock_day_pg(code=stock_code,start_date=start_date,end_date=end_data)  
+# stock_data2=QA_fetch_stock_day_pg(code=stock_code,start_date=start_date,end_date=end_data)
 # #获取固定日期代码部分日线数据 
 #stock_data3=QA_fetch_stock_day_pg(code=stock_code,start_date=start_date,end_date=end_date,data=data) 
 
